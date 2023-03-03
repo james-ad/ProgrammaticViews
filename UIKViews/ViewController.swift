@@ -39,12 +39,11 @@ class ViewController: UIViewController {
     func setupTable() {
         button.isHidden = true
         view.addSubview(tableView)
-        print("working, mbut not working")
         tableView.dataSource = self
         tableView.delegate = self
         tableView.backgroundColor = .systemMint
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        
+        tableView.layer.cornerRadius = 6
         
         NSLayoutConstraint.activate([
             tableView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -65,6 +64,14 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         tableCell.backgroundColor = .systemMint
         tableCell.layer.borderColor = UIColor.black.cgColor
         tableCell.layer.borderWidth = 0.5
+        tableCell.layer.cornerRadius = 5
+        
+        var config = UIListContentConfiguration.cell()
+        config.text = "Cell # \(indexPath[1])"
+        config.textProperties.color = .white
+        
+        tableCell.contentConfiguration = config
+        
         return tableCell
     }
 }
